@@ -1,3 +1,5 @@
+
+'use client';
 import { mockAttendance } from "@/lib/constants";
 import AttendanceClient from "@/components/worker/attendance-client";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
