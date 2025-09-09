@@ -26,6 +26,10 @@ const Particles = ({
     setParticles(newParticles);
   }, [quantity]);
 
+  if (particles.length === 0) {
+    return null;
+  }
+
   return (
     <div className={cn("absolute inset-0 z-0", className)}>
       {particles.map((style, i) => (
