@@ -107,6 +107,18 @@ const config: Config = {
           '75%': { transform: 'translate(-10px, -10px) rotate(-270deg)' },
           '100%': { transform: 'translate(0, 0) rotate(-360deg)' },
         },
+        'particle-float': {
+          '0%, 100%': { transform: 'translateY(0px) translateX(0px)' },
+          '50%': { transform: 'translateY(-20px) translateX(15px)' },
+        },
+        'panel-float': {
+          '0%, 100%': { transform: 'translateY(0) rotate(-2deg)' },
+          '50%': { transform: 'translateY(-20px) rotate(2deg)' },
+        },
+        'spin-slow': {
+            'from': { transform: 'rotateX(0deg) rotateY(0deg)' },
+            'to': { transform: 'rotateX(360deg) rotateY(360deg)' },
+        }
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
@@ -115,9 +127,30 @@ const config: Config = {
         'fade-in-up': 'fade-in-up 1s ease-out forwards',
         'orb-float-1': 'orb-float-1 20s ease-in-out infinite',
         'orb-float-2': 'orb-float-2 25s ease-in-out infinite',
+        'particle-float': 'particle-float 20s ease-in-out infinite',
+        'panel-float': 'panel-float 20s ease-in-out infinite',
+        'spin-slow': 'spin-slow 40s linear infinite',
       },
+      perspective: {
+        '1000': '1000px',
+      },
+      transformStyle: {
+        '3d': 'preserve-3d',
+      }
     },
   },
-  plugins: [require('tailwindcss-animate')],
+  plugins: [
+    require('tailwindcss-animate'),
+    function ({ addUtilities }: { addUtilities: any}) {
+        addUtilities({
+            '.perspective-1000': {
+                perspective: '1000px',
+            },
+            '.transform-style-3d': {
+                transformStyle: 'preserve-3d',
+            },
+        });
+    },
+  ],
 };
 export default config;
