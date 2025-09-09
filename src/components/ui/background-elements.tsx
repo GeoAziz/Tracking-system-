@@ -1,7 +1,8 @@
+
 "use client";
 
 import { cn } from "@/lib/utils";
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 const Particles = ({
   className,
@@ -10,23 +11,28 @@ const Particles = ({
   className?: string;
   quantity?: number;
 }) => {
-  const particles = Array.from({ length: quantity });
+  const [particles, setParticles] = useState<React.CSSProperties[]>([]);
+
+  useEffect(() => {
+    const newParticles = Array.from({ length: quantity }).map(() => ({
+      left: `${Math.random() * 100}%`,
+      top: `${Math.random() * 100}%`,
+      animation: `particle-float ${
+        Math.random() * 10 + 10
+      }s ease-in-out infinite`,
+      animationDelay: `-${Math.random() * 10}s`,
+      transform: `scale(${Math.random() * 0.5 + 0.5})`,
+    }));
+    setParticles(newParticles);
+  }, [quantity]);
 
   return (
     <div className={cn("absolute inset-0 z-0", className)}>
-      {particles.map((_, i) => (
+      {particles.map((style, i) => (
         <div
           key={i}
           className="absolute h-[2px] w-[2px] rounded-full bg-primary/80"
-          style={{
-            left: `${Math.random() * 100}%`,
-            top: `${Math.random() * 100}%`,
-            animation: `particle-float ${
-              Math.random() * 10 + 10
-            }s ease-in-out infinite`,
-            animationDelay: `-${Math.random() * 10}s`,
-            transform: `scale(${Math.random() * 0.5 + 0.5})`,
-          }}
+          style={style}
         />
       ))}
     </div>
