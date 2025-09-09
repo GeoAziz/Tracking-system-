@@ -1,4 +1,3 @@
-// @ts-nocheck
 'use client';
 import React, { useRef, useMemo } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
@@ -7,12 +6,14 @@ import { EffectComposer, Bloom } from '@react-three/postprocessing';
 import * as THREE from 'three';
 
 // Floating Orb Component
-function FloatingOrb({ position, scale = 1 }) {
+function FloatingOrb({ position, scale = 1 }: { position: [number, number, number], scale?: number }) {
   const ref = useRef<THREE.Mesh>(null!);
   const time = useRef(Math.random() * 10);
   useFrame(({ clock }) => {
     time.current = clock.elapsedTime + time.current;
-    ref.current.position.y = position[1] + Math.sin(time.current * 0.5) * 0.2;
+    if (ref.current) {
+        ref.current.position.y = position[1] + Math.sin(time.current * 0.5) * 0.2;
+    }
   });
 
   return (
@@ -38,8 +39,10 @@ function WireframePolyhedron({
 }) {
   const ref = useRef<THREE.Mesh>(null!);
   useFrame(() => {
-    ref.current.rotation.y += 0.002;
-    ref.current.rotation.x += 0.001;
+    if (ref.current) {
+        ref.current.rotation.y += 0.002;
+        ref.current.rotation.x += 0.001;
+    }
   });
 
   const geometry = useMemo(() => {
