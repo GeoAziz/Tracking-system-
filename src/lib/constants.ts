@@ -14,7 +14,9 @@ export const adminNavLinks = [
   { href: "/admin/users", label: "Users", icon: Users },
 ];
 
-export const mockAttendance = [
+import type { AttendanceRecord } from "./types";
+
+export const mockAttendance: AttendanceRecord[] = [
     { date: "2024-07-15", status: "Present" },
     { date: "2024-07-14", status: "Present" },
     { date: "2024-07-13", status: "Present" },

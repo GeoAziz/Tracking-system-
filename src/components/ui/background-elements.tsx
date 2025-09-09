@@ -1,15 +1,20 @@
-
 "use client";
 
 import { cn } from "@/lib/utils";
 import React, { useState, useEffect } from "react";
 
-const Particles = ({
+export interface BackgroundElementProps {
+  className?: string;
+  style?: React.CSSProperties;
+}
+
+export interface ParticlesProps extends BackgroundElementProps {
+  quantity?: number;
+}
+
+export const Particles: React.FC<ParticlesProps> = ({
   className,
   quantity = 100,
-}: {
-  className?: string;
-  quantity?: number;
 }) => {
   const [particles, setParticles] = useState<React.CSSProperties[]>([]);
 
@@ -43,7 +48,7 @@ const Particles = ({
   );
 };
 
-const GlassPanel = ({ className, style }: { className?: string, style?: React.CSSProperties }) => (
+export const GlassPanel = ({ className, style }: BackgroundElementProps): JSX.Element => (
   <div
     className={cn(
       "absolute w-64 h-40 bg-white/5 backdrop-blur-sm border border-primary/20 rounded-lg shadow-lg animate-panel-float",
@@ -53,18 +58,17 @@ const GlassPanel = ({ className, style }: { className?: string, style?: React.CS
   />
 );
 
-const WireframeCube = ({ className, style }: { className?: string, style?: React.CSSProperties }) => (
-    <div className={cn("absolute w-24 h-24", className)} style={style}>
-        <div className="relative w-full h-full transform-style-3d animate-spin-slow">
-            <div className="absolute w-full h-full border-2 border-accent/50" style={{transform: 'rotateY(0deg) translateZ(48px)'}}></div>
-            <div className="absolute w-full h-full border-2 border-accent/50" style={{transform: 'rotateY(90deg) translateZ(48px)'}}></div>
-            <div className="absolute w-full h-full border-2 border-accent/50" style={{transform: 'rotateY(180deg) translateZ(48px)'}}></div>
-            <div className="absolute w-full h-full border-2 border-accent/50" style={{transform: 'rotateY(-90deg) translateZ(48px)'}}></div>
-            <div className="absolute w-full h-full border-2 border-accent/50" style={{transform: 'rotateX(90deg) translateZ(48px)'}}></div>
-            <div className="absolute w-full h-full border-2 border-accent/50" style={{transform: 'rotateX(-90deg) translateZ(48px)'}}></div>
-        </div>
+export const WireframeCube = ({ className, style }: BackgroundElementProps): JSX.Element => (
+  <div className={cn("absolute w-24 h-24", className)} style={style}>
+    <div className="relative w-full h-full transform-style-3d animate-spin-slow">
+      <div className="absolute w-full h-full border-2 border-accent/50" style={{transform: 'rotateY(0deg) translateZ(48px)'}}></div>
+      <div className="absolute w-full h-full border-2 border-accent/50" style={{transform: 'rotateY(90deg) translateZ(48px)'}}></div>
+      <div className="absolute w-full h-full border-2 border-accent/50" style={{transform: 'rotateY(180deg) translateZ(48px)'}}></div>
+      <div className="absolute w-full h-full border-2 border-accent/50" style={{transform: 'rotateY(-90deg) translateZ(48px)'}}></div>
+      <div className="absolute w-full h-full border-2 border-accent/50" style={{transform: 'rotateX(90deg) translateZ(48px)'}}></div>
+      <div className="absolute w-full h-full border-2 border-accent/50" style={{transform: 'rotateX(-90deg) translateZ(48px)'}}></div>
     </div>
+  </div>
 );
 
 
-export { Particles, GlassPanel, WireframeCube };
