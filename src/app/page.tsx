@@ -2,7 +2,11 @@ import Link from 'next/link';
 import Logo from '@/components/logo';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
-import SplashScene from '@/components/splash-scene';
+import dynamic from 'next/dynamic';
+
+const SplashScene = dynamic(() => import('@/components/splash-scene'), {
+  ssr: false,
+});
 
 export default function Home() {
   return (

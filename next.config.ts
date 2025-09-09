@@ -24,6 +24,12 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  webpack: (config, { isServer }) => {
+    if (isServer) {
+      config.externals.push('three', '@react-three/fiber', '@react-three/drei');
+    }
+    return config;
+  }
 };
 
 export default nextConfig;
