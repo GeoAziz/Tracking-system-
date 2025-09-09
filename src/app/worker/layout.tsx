@@ -1,4 +1,3 @@
-
 "use client"
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -98,15 +97,12 @@ export default function WorkerLayout({ children }: { children: React.ReactNode }
         </Sidebar>
         
         <SidebarInset>
-          <main className="p-4 sm:p-6 lg:p-8">
+           <main className="p-4 sm:p-6 lg:p-8">
             <div className="md:hidden flex justify-between items-center mb-4 z-20 relative">
-              <Logo className="text-2xl" />
-              <SidebarTrigger />
+                <Logo className="text-2xl" />
+                <SidebarTrigger />
             </div>
-
-            <div className="w-full">
-              {children}
-            </div>
+            {children}
           </main>
         </SidebarInset>
       </div>

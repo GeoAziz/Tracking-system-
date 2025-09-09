@@ -1,4 +1,3 @@
-
 "use client"
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -24,52 +23,50 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
   return (
     <SidebarProvider>
-        <Sidebar style={{ '--sidebar-width': '16rem' } as React.CSSProperties}>
-          <SidebarHeader>
+      <Sidebar style={{ '--sidebar-width': '16rem' } as React.CSSProperties}>
+        <SidebarHeader>
+          <Logo className="text-2xl" />
+        </SidebarHeader>
+        <SidebarContent>
+          <SidebarMenu>
+            {adminNavLinks.map((link) => (
+              <SidebarMenuItem key={link.href}>
+                <SidebarMenuButton
+                  asChild
+                  isActive={pathname === link.href}
+                  tooltip={link.label}
+                  className={cn(
+                    'data-[active=true]:bg-primary/20 data-[active=true]:text-primary',
+                    'hover:bg-primary/10 hover:text-primary'
+                  )}
+                >
+                  <Link href={link.href}>
+                    <link.icon />
+                    <span>{link.label}</span>
+                  </Link>
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+            ))}
+          </SidebarMenu>
+        </SidebarContent>
+        <div className="p-2 mt-auto">
+          <Button asChild variant="ghost" className="w-full justify-start gap-2 hover:bg-primary/10 hover:text-primary">
+            <Link href="/login">
+              <LogOut />
+              <span>Logout</span>
+            </Link>
+          </Button>
+        </div>
+      </Sidebar>
+      <SidebarInset className="min-h-screen bg-gradient-to-br from-[#301934] via-background to-[#000000]">
+        <main className="p-4 sm:p-6 lg:p-8">
+          <div className="md:hidden flex justify-between items-center mb-4">
             <Logo className="text-2xl" />
-          </SidebarHeader>
-          <SidebarContent>
-            <SidebarMenu>
-              {adminNavLinks.map((link) => (
-                <SidebarMenuItem key={link.href}>
-                  <SidebarMenuButton
-                    asChild
-                    isActive={pathname === link.href}
-                    tooltip={link.label}
-                    className={cn(
-                      'data-[active=true]:bg-primary/20 data-[active=true]:text-primary',
-                      'hover:bg-primary/10 hover:text-primary'
-                    )}
-                  >
-                    <Link href={link.href}>
-                      <link.icon />
-                      <span>{link.label}</span>
-                    </Link>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
-            </SidebarMenu>
-          </SidebarContent>
-           <div className="p-2 mt-auto">
-             <Button asChild variant="ghost" className="w-full justify-start gap-2 hover:bg-primary/10 hover:text-primary">
-                <Link href="/login">
-                  <LogOut />
-                  <span>Logout</span>
-                </Link>
-             </Button>
+            <SidebarTrigger />
           </div>
-        </Sidebar>
-        <SidebarInset className="min-h-screen bg-gradient-to-br from-[#301934] via-background to-[#000000]">
-           <main className="p-4 sm:p-6 lg:p-8">
-            <div className="md:hidden flex justify-between items-center mb-4">
-                <Logo className="text-2xl" />
-                <SidebarTrigger />
-            </div>
-            <div className="w-full">
-              {children}
-            </div>
-          </main>
-        </SidebarInset>
+          {children}
+        </main>
+      </SidebarInset>
     </SidebarProvider>
   );
 }
