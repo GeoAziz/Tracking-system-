@@ -17,15 +17,8 @@ import { Button } from '@/components/ui/button';
 import { LogOut } from 'lucide-react';
 import { Particles, GlassPanel, WireframeCube } from '@/components/ui/background-elements';
 import { motion } from 'framer-motion';
-import { Container } from '@/components/ui/container';
 import Logo from '@/components/logo';
 import { workerNavLinks } from '@/lib/constants';
-
-const SIDEBAR_WIDTH = {
-  compact: '4rem',
-  default: '16rem',
-  expanded: '20rem'
-};
 
 export default function WorkerLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -43,18 +36,13 @@ export default function WorkerLayout({ children }: { children: React.ReactNode }
         </div>
 
         {/* Sidebar - responsive with improved animations */}
-        <motion.div
-          initial={{ x: -300 }}
-          animate={{ x: 0 }}
-          transition={{ type: "spring", stiffness: 100, damping: 20 }}
-        >
           <Sidebar 
-            style={{ '--sidebar-width': '18rem' } as React.CSSProperties}
             className="fixed top-0 left-0 z-40 h-screen bg-sidebar/90 backdrop-blur-md border-r border-primary/10 shadow-xl transform transition-all duration-300 ease-in-out">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
+              className="flex flex-col h-full"
             >
               <SidebarHeader>
                 <Logo className="text-2xl" />
@@ -115,28 +103,24 @@ export default function WorkerLayout({ children }: { children: React.ReactNode }
               </motion.div>
             </motion.div>
           </Sidebar>
-        </motion.div>
 
         {/* Main Content - responsive wrapper */}
-        <main className="md:ml-[18rem] transition-[margin-left] duration-300">
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5 }}
-            className="relative min-h-screen w-full p-4 sm:p-6 lg:p-8 z-10"
-          >
+        <SidebarInset>
             {/* Mobile Header */}
-            <div className="md:hidden flex justify-between items-center mb-4">
+            <div className="md:hidden flex justify-between items-center mb-4 p-4">
               <Logo className="text-2xl" />
               <SidebarTrigger />
             </div>
 
-            {/* Content Wrapper */}
-            <div className="w-full">
-                {children}
-            </div>
-          </motion.div>
-        </main>
+            <motion.main 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5 }}
+              className="relative min-h-screen w-full p-4 sm:p-6 lg:p-8 z-10"
+            >
+              {children}
+            </motion.main>
+        </SidebarInset>
       </div>
     </SidebarProvider>
   );

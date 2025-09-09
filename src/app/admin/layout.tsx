@@ -17,14 +17,6 @@ import { adminNavLinks } from '@/lib/constants';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { LogOut } from 'lucide-react';
-import { motion } from 'framer-motion';
-import { Container } from '@/components/ui/container';
-
-const SIDEBAR_WIDTH = {
-  compact: '4rem',
-  default: '16rem',
-  expanded: '20rem'
-};
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -32,7 +24,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   return (
     <SidebarProvider>
       <div className="min-h-screen bg-gradient-to-br from-[#301934] via-background to-[#000000]">
-        <Sidebar style={{ '--sidebar-width': '16rem' } as React.CSSProperties}>
+        <Sidebar>
           <SidebarHeader>
             <Logo className="text-2xl" />
           </SidebarHeader>
@@ -67,16 +59,16 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
              </Button>
           </div>
         </Sidebar>
-        <main className="md:ml-[16rem] transition-[margin-left] duration-300">
-          <div className="w-full p-4 md:p-6">
-                <div className="md:hidden flex justify-between items-center mb-4">
-                    <Logo className="text-2xl" />
-                    <SidebarTrigger />
-                </div>
+        <SidebarInset>
+            <div className="md:hidden flex justify-between items-center mb-4 p-4">
+                <Logo className="text-2xl" />
+                <SidebarTrigger />
+            </div>
+            <main className="p-4 md:p-6 w-full">
                 {children}
-          </div>
-        </main>
-      </SidebarInset>
+            </main>
+        </SidebarInset>
+      </div>
     </SidebarProvider>
   );
 }
