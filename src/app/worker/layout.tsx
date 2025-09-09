@@ -11,6 +11,7 @@ import {
   SidebarMenuItem,
   SidebarMenuButton,
   SidebarTrigger,
+  SidebarInset,
 } from '@/components/ui/sidebar';
 import Logo from '@/components/logo';
 import { workerNavLinks } from '@/lib/constants';
@@ -98,19 +99,18 @@ export default function WorkerLayout({ children }: { children: React.ReactNode }
           </motion.div>
         </Sidebar>
         
-        {/* Main Content - responsive wrapper */}
-        <main className="md:ml-[18rem] transition-[margin-left] duration-300 p-4 sm:p-6 lg:p-8">
+        <SidebarInset>
             {/* Mobile Header */}
-            <div className="md:hidden flex justify-between items-center mb-4 z-20 relative">
+            <div className="md:hidden flex justify-between items-center mb-4 z-20 relative p-4 sm:p-6 lg:p-8">
               <Logo className="text-2xl" />
               <SidebarTrigger />
             </div>
 
             {/* Content Wrapper */}
-            <div className="relative z-10">
+            <main className="relative z-10 p-4 sm:p-6 lg:p-8 pt-0 md:pt-8">
                 {children}
-            </div>
-        </main>
+            </main>
+        </SidebarInset>
       </div>
     </SidebarProvider>
   );

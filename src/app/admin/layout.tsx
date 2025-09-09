@@ -1,4 +1,3 @@
-
 "use client"
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -11,6 +10,7 @@ import {
   SidebarMenuItem,
   SidebarMenuButton,
   SidebarTrigger,
+  SidebarInset,
 } from '@/components/ui/sidebar';
 import Logo from '@/components/logo';
 import { adminNavLinks } from '@/lib/constants';
@@ -23,7 +23,6 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
   return (
     <SidebarProvider>
-      <div className="min-h-screen bg-gradient-to-br from-[#301934] via-background to-[#000000]">
         <Sidebar style={{ '--sidebar-width': '16rem' } as React.CSSProperties}>
           <SidebarHeader>
             <Logo className="text-2xl" />
@@ -59,14 +58,15 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
              </Button>
           </div>
         </Sidebar>
-        <main className="md:ml-[16rem] transition-[margin-left] duration-300 p-4 sm:p-6 lg:p-8">
-          <div className="md:hidden flex justify-between items-center mb-4">
-              <Logo className="text-2xl" />
-              <SidebarTrigger />
-          </div>
-          {children}
-        </main>
-      </div>
+        <SidebarInset className="min-h-screen bg-gradient-to-br from-[#301934] via-background to-[#000000]">
+           <main className="p-4 sm:p-6 lg:p-8">
+            <div className="md:hidden flex justify-between items-center mb-4">
+                <Logo className="text-2xl" />
+                <SidebarTrigger />
+            </div>
+            {children}
+          </main>
+        </SidebarInset>
     </SidebarProvider>
   );
 }
