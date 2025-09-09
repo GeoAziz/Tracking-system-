@@ -1,7 +1,7 @@
+@import '../styles/animations.css';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import '../styles/animations.css';
 
 @layer utilities {
   .content-grid {
@@ -11,15 +11,15 @@
   }
 
   .glass-card {
-    background-color: rgba(255,255,255,0.05);
-    backdrop-filter: blur(6px);
-    border: 1px solid rgba(255,255,255,0.1);
+    background-color: rgb(255 255 255 / 0.1);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgb(255 255 255 / 0.1);
     border-radius: 0.75rem;
-    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05);
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
     transition: background-color 0.3s;
   }
   .glass-card:hover {
-    background-color: rgba(255,255,255,0.10);
+    background-color: rgb(255 255 255 / 0.15);
   }
 
   .responsive-padding {
