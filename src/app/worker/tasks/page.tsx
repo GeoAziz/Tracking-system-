@@ -1,37 +1,60 @@
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from "@/components/ui/table";
+
 
 export default function WorkerTasksPage() {
   const mockTasks = [
     { title: "Prepare daily report", status: "In Progress", due: "Today" },
     { title: "Update profile info", status: "Completed", due: "Yesterday" },
     { title: "Review attendance", status: "Pending", due: "Tomorrow" },
+    { title: "Onboard new team member", status: "In Progress", due: "2024-07-20" },
+    { title: "Finalize Q3 budget", status: "Pending", due: "2024-07-22" },
+    { title: "Submit project proposal", status: "Completed", due: "2024-07-15" },
   ];
+
+  const getStatusClass = (status: string) => {
+    switch (status) {
+      case "In Progress":
+        return "text-yellow-400";
+      case "Completed":
+        return "text-green-400";
+      case "Pending":
+        return "text-orange-400";
+      default:
+        return "";
+    }
+  };
+
   return (
-    <div className="w-full min-w-0 overflow-x-auto space-y-8 animate-fade-in-up">
-      <Card className="glass-card p-2 sm:p-4 overflow-x-auto">
+    <div className="flex flex-col h-full animate-fade-in-up">
+      <Card className="glass-card w-full flex-grow flex flex-col">
         <CardHeader>
-          <CardTitle className="text-lg sm:text-xl">My Tasks</CardTitle>
+          <CardTitle className="text-2xl font-headline text-glow">My Tasks</CardTitle>
         </CardHeader>
-        <CardContent>
-          <div className="w-full overflow-x-auto">
-            <table className="min-w-full table-auto text-sm">
-              <thead>
-                <tr className="text-left text-muted-foreground">
-                  <th>Task</th>
-                  <th>Status</th>
-                  <th>Due</th>
-                </tr>
-              </thead>
-              <tbody>
+        <CardContent className="flex-grow p-0">
+          <div className="h-full overflow-y-auto custom-scrollbar">
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead className="w-[50%]">Task</TableHead>
+                  <TableHead>Status</TableHead>
+                  <TableHead>Due</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
                 {mockTasks.map((task, i) => (
-                  <tr key={i} className="border-b border-muted-foreground/10">
-                    <td>{task.title}</td>
-                    <td>{task.status}</td>
-                    <td>{task.due}</td>
-                  </tr>
+                  <TableRow key={i} className="border-primary/10">
+                    <TableCell className="font-medium">{task.title}</TableCell>
+                    <TableCell>
+                      <span className={cn("font-semibold", getStatusClass(task.status))}>
+                        {task.status}
+                      </span>
+                    </TableCell>
+                    <TableCell>{task.due}</TableCell>
+                  </TableRow>
                 ))}
-              </tbody>
-            </table>
+              </TableBody>
+            </Table>
           </div>
         </CardContent>
       </Card>
