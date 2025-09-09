@@ -16,7 +16,6 @@ import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { LogOut } from 'lucide-react';
 import { Particles, GlassPanel, WireframeCube } from '@/components/ui/background-elements';
-import { motion } from 'framer-motion';
 import Logo from '@/components/logo';
 import { workerNavLinks } from '@/lib/constants';
 
@@ -26,7 +25,6 @@ export default function WorkerLayout({ children }: { children: React.ReactNode }
   return (
     <SidebarProvider>
       <div className="relative min-h-screen bg-gradient-to-br from-[#301934] via-background to-[#000000] overflow-x-hidden">
-        {/* Animated 3D background elements */}
         <div className="fixed inset-0 pointer-events-none z-0">
           <Particles quantity={120} />
           <GlassPanel className="top-16 left-8 opacity-20" />
@@ -35,28 +33,16 @@ export default function WorkerLayout({ children }: { children: React.ReactNode }
           <WireframeCube className="bottom-8 right-1/4 opacity-30" />
         </div>
 
-        {/* Sidebar - responsive with improved animations */}
           <Sidebar 
-            className="fixed top-0 left-0 z-40 h-screen bg-sidebar/90 backdrop-blur-md border-r border-primary/10 shadow-xl transform transition-all duration-300 ease-in-out">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              className="flex flex-col h-full"
-            >
+            className="fixed top-0 left-0 z-40 h-screen bg-sidebar/90 backdrop-blur-md border-r border-primary/10 shadow-xl">
+            <div className="flex flex-col h-full">
               <SidebarHeader>
                 <Logo className="text-2xl" />
               </SidebarHeader>
               <SidebarContent>
                 <SidebarMenu>
-                  {workerNavLinks.map((link, index) => (
-                    <motion.div
-                      key={link.href}
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: 0.1 * (index + 1) }}
-                    >
-                      <SidebarMenuItem>
+                  {workerNavLinks.map((link) => (
+                      <SidebarMenuItem key={link.href}>
                         <SidebarMenuButton
                           asChild
                           isActive={pathname === link.href}
@@ -68,28 +54,15 @@ export default function WorkerLayout({ children }: { children: React.ReactNode }
                           )}
                         >
                           <Link href={link.href}>
-                            <motion.div
-                              whileHover={{ scale: 1.1, rotate: 5 }}
-                              initial={{ scale: 0.9, opacity: 0.7 }}
-                              animate={{ scale: 1, opacity: 1 }}
-                              transition={{ duration: 0.2 }}
-                            >
                               <link.icon className="text-primary/80" />
-                            </motion.div>
                             <span className="font-medium">{link.label}</span>
                           </Link>
                         </SidebarMenuButton>
                       </SidebarMenuItem>
-                    </motion.div>
                   ))}
                 </SidebarMenu>
               </SidebarContent>
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5 }}
-                className="p-2 mt-auto"
-              >
+              <div className="p-2 mt-auto">
                 <Button
                   asChild
                   variant="ghost"
@@ -100,18 +73,19 @@ export default function WorkerLayout({ children }: { children: React.ReactNode }
                     <span>Logout</span>
                   </Link>
                 </Button>
-              </motion.div>
-            </motion.div>
+              </div>
+            </div>
           </Sidebar>
 
-        {/* Main Content - responsive wrapper */}
         <SidebarInset>
-            <div className="md:hidden flex justify-between items-center p-4">
-              <Logo className="text-2xl" />
-              <SidebarTrigger />
-            </div>
-            <main className="p-4 sm:p-6 lg:p-8 w-full">
-              {children}
+            <main className="w-full">
+              <div className="md:hidden flex justify-between items-center p-4 sticky top-0 bg-background/80 backdrop-blur-sm z-10">
+                <Logo className="text-2xl" />
+                <SidebarTrigger />
+              </div>
+              <div className="p-4 sm:p-6 lg:p-8">
+                {children}
+              </div>
             </main>
         </SidebarInset>
       </div>
