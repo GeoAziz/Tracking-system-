@@ -1,7 +1,7 @@
 'use client';
 
-import { useEffect } from 'react';
-import { useFormState, useFormStatus } from 'react-dom';
+import { useEffect, useActionState } from 'react';
+import { useFormStatus } from 'react-dom';
 import { assessFlexTimeAction, type AssessActionState } from '@/app/actions/assess-flex-time-action';
 import { useToast } from '@/hooks/use-toast';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
@@ -39,7 +39,7 @@ export default function AttendanceClient({ records }: { records: AttendanceRecor
     message: null,
   };
 
-  const [state, formAction] = useFormState(assessFlexTimeAction, initialState);
+  const [state, formAction] = useActionState(assessFlexTimeAction, initialState);
 
   useEffect(() => {
     if (state.error) {
