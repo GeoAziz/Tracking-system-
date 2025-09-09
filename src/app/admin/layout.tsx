@@ -60,7 +60,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           </div>
         </Sidebar>
         <main className="md:ml-[16rem] transition-[margin-left] duration-300">
-          <div className="w-full p-4 md:p-6">
+          <div className="relative min-h-screen p-4 sm:p-6 lg:p-8">
                 <div className="md:hidden flex justify-between items-center mb-4">
                     <Logo className="text-2xl" />
                     <SidebarTrigger />
