@@ -27,7 +27,6 @@ export default function WorkerLayout({ children }: { children: React.ReactNode }
   return (
     <SidebarProvider>
       <div className="relative min-h-screen bg-gradient-to-br from-[#301934] via-background to-[#000000] overflow-hidden">
-        {/* Animated 3D background elements */}
         <div className="fixed inset-0 pointer-events-none z-0">
           <Particles quantity={120} />
           <GlassPanel className="top-16 left-8 opacity-20" />
@@ -36,7 +35,6 @@ export default function WorkerLayout({ children }: { children: React.ReactNode }
           <WireframeCube className="bottom-8 right-1/4 opacity-30" />
         </div>
 
-        {/* Sidebar - responsive with improved animations */}
         <Sidebar 
           style={{ '--sidebar-width': '18rem' } as React.CSSProperties}
           className="fixed top-0 left-0 z-40 h-screen bg-sidebar/90 backdrop-blur-md border-r border-primary/10 shadow-xl transform transition-all duration-300 ease-in-out">
@@ -100,16 +98,16 @@ export default function WorkerLayout({ children }: { children: React.ReactNode }
         </Sidebar>
         
         <SidebarInset>
-            {/* Mobile Header */}
-            <div className="md:hidden flex justify-between items-center mb-4 z-20 relative p-4 sm:p-6 lg:p-8">
+          <main className="p-4 sm:p-6 lg:p-8">
+            <div className="md:hidden flex justify-between items-center mb-4 z-20 relative">
               <Logo className="text-2xl" />
               <SidebarTrigger />
             </div>
 
-            {/* Content Wrapper */}
-            <main className="relative z-10 p-4 sm:p-6 lg:p-8 pt-0 md:pt-8">
-                {children}
-            </main>
+            <div className="w-full">
+              {children}
+            </div>
+          </main>
         </SidebarInset>
       </div>
     </SidebarProvider>

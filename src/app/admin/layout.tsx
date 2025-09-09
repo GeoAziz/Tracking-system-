@@ -1,3 +1,4 @@
+
 "use client"
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -64,7 +65,9 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                 <Logo className="text-2xl" />
                 <SidebarTrigger />
             </div>
-            {children}
+            <div className="w-full">
+              {children}
+            </div>
           </main>
         </SidebarInset>
     </SidebarProvider>
