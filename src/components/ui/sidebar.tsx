@@ -206,7 +206,7 @@ const Sidebar = React.forwardRef<
             }
             side={side}
           >
-             <SheetTitle className="sr-only">Menu</SheetTitle>
+            <SheetTitle className="sr-only">Menu</SheetTitle>
             <div className="flex h-full w-full flex-col">{children}</div>
           </SheetContent>
         </Sheet>
@@ -319,14 +319,13 @@ const SidebarInset = React.forwardRef<
   HTMLDivElement,
   React.ComponentProps<"main">
 >(({ className, ...props }, ref) => {
-  const { state } = useSidebar()
   return (
     <main
       ref={ref}
       className={cn(
-        "relative flex min-h-svh flex-1 flex-col bg-background transition-all duration-200",
-        "peer-data-[variant=inset]:min-h-[calc(100svh-theme(spacing.4))] md:peer-data-[variant=inset]:m-2 md:peer-data-[state=collapsed]:peer-data-[variant=inset]:ml-2 md:peer-data-[variant=inset]:ml-0 md:peer-data-[variant=inset]:rounded-xl md:peer-data-[variant=inset]:shadow",
-        state === 'expanded' && 'md:ml-64',
+        "relative flex min-h-svh flex-1 flex-col bg-background transition-[margin-left] duration-200 md:ml-[var(--sidebar-width)]",
+        "peer-data-[state=collapsed]:md:ml-[var(--sidebar-width-icon)]",
+        "peer-data-[variant=inset]:min-h-[calc(100svh-theme(spacing.4))] peer-data-[variant=inset]:md:m-2 peer-data-[state=expanded]:peer-data-[variant=inset]:ml-[var(--sidebar-width)] peer-data-[state=collapsed]:peer-data-[variant=inset]:ml-[var(--sidebar-width-icon)] peer-data-[variant=inset]:md:rounded-xl peer-data-[variant=inset]:shadow",
         className
       )}
       {...props}
@@ -764,3 +763,5 @@ export {
   SidebarTrigger,
   useSidebar,
 }
+
+    

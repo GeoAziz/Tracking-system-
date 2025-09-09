@@ -42,7 +42,9 @@ export default function WorkerLayout({ children }: { children: React.ReactNode }
           animate={{ x: 0 }}
           transition={{ type: "spring", stiffness: 100, damping: 20 }}
         >
-          <Sidebar className="fixed top-0 left-0 z-40 h-screen w-64 md:w-72 lg:w-80 bg-sidebar/90 backdrop-blur-md border-r border-primary/10 shadow-xl transform transition-all duration-300 ease-in-out">
+          <Sidebar 
+            style={{ '--sidebar-width': '18rem' } as React.CSSProperties}
+            className="fixed top-0 left-0 z-40 h-screen bg-sidebar/90 backdrop-blur-md border-r border-primary/10 shadow-xl transform transition-all duration-300 ease-in-out">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -140,3 +142,5 @@ export default function WorkerLayout({ children }: { children: React.ReactNode }
     </SidebarProvider>
   );
 }
+
+    

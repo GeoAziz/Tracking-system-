@@ -24,7 +24,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   return (
     <SidebarProvider>
       <div className="min-h-screen bg-gradient-to-br from-[#301934] via-background to-[#000000]">
-        <Sidebar>
+        <Sidebar style={{ '--sidebar-width': '16rem' } as React.CSSProperties}>
           <SidebarHeader>
             <Logo className="text-2xl" />
           </SidebarHeader>
@@ -72,3 +72,5 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     </SidebarProvider>
   );
 }
+
+    
