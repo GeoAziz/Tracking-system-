@@ -27,13 +27,13 @@ export default function WorkerTasksPage() {
   };
 
   return (
-    <div className="flex flex-col h-full animate-fade-in-up">
-      <Card className="glass-card w-full flex-grow flex flex-col">
+    <div className="animate-fade-in-up">
+      <Card className="glass-card">
         <CardHeader>
           <CardTitle className="text-2xl font-headline text-glow">My Tasks</CardTitle>
         </CardHeader>
-        <CardContent className="flex-grow p-0">
-          <div className="h-full overflow-y-auto custom-scrollbar">
+        <CardContent className="p-0">
+          <div className="overflow-y-auto custom-scrollbar">
             <Table>
               <TableHeader>
                 <TableRow>

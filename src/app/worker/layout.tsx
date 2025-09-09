@@ -1,3 +1,4 @@
+
 "use client"
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -33,8 +34,7 @@ export default function WorkerLayout({ children }: { children: React.ReactNode }
           <WireframeCube className="bottom-8 right-1/4 opacity-30" />
         </div>
 
-          <Sidebar 
-            className="fixed top-0 left-0 z-40 h-screen bg-sidebar/90 backdrop-blur-md border-r border-primary/10 shadow-xl">
+          <Sidebar>
             <div className="flex flex-col h-full">
               <SidebarHeader>
                 <Logo className="text-2xl" />
@@ -78,7 +78,7 @@ export default function WorkerLayout({ children }: { children: React.ReactNode }
           </Sidebar>
 
         <SidebarInset>
-            <main className="w-full">
+            <main>
               <div className="md:hidden flex justify-between items-center p-4 sticky top-0 bg-background/80 backdrop-blur-sm z-10">
                 <Logo className="text-2xl" />
                 <SidebarTrigger />
