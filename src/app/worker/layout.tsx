@@ -1,4 +1,3 @@
-
 "use client"
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -11,6 +10,7 @@ import {
   SidebarMenuItem,
   SidebarMenuButton,
   SidebarTrigger,
+  SidebarInset,
 } from '@/components/ui/sidebar';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
@@ -32,12 +32,14 @@ export default function WorkerLayout({ children }: { children: React.ReactNode }
 
   return (
     <SidebarProvider>
-      <div className="relative min-h-screen bg-gradient-to-br from-[#301934] via-background to-[#000000] overflow-hidden">
+      <div className="relative min-h-screen bg-gradient-to-br from-[#301934] via-background to-[#000000] overflow-x-hidden">
         {/* Animated 3D background elements */}
-        <div className="fixed inset-0 pointer-events-none z-0 opacity-50">
-          <Particles className="absolute inset-0" />
-          <GlassPanel className="absolute inset-0" />
-          <WireframeCube className="absolute inset-0" />
+        <div className="fixed inset-0 pointer-events-none z-0">
+          <Particles quantity={120} />
+          <GlassPanel className="top-16 left-8 opacity-20" />
+          <GlassPanel className="bottom-24 right-12 opacity-20" />
+          <WireframeCube className="top-1/2 left-1/3 opacity-30" />
+          <WireframeCube className="bottom-8 right-1/4 opacity-30" />
         </div>
 
         {/* Sidebar - responsive with improved animations */}
@@ -47,11 +49,8 @@ export default function WorkerLayout({ children }: { children: React.ReactNode }
           transition={{ type: "spring", stiffness: 100, damping: 20 }}
         >
           <Sidebar 
-            style={{ 
-              '--sidebar-width': SIDEBAR_WIDTH.default,
-              '--sidebar-collapsed-width': SIDEBAR_WIDTH.compact 
-            } as React.CSSProperties}
-            className="fixed top-0 left-0 z-40 h-screen bg-sidebar/95 backdrop-blur-xl border-r border-primary/10 shadow-xl transform transition-all duration-300 ease-in-out">
+            style={{ '--sidebar-width': '18rem' } as React.CSSProperties}
+            className="fixed top-0 left-0 z-40 h-screen bg-sidebar/90 backdrop-blur-md border-r border-primary/10 shadow-xl transform transition-all duration-300 ease-in-out">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -119,27 +118,23 @@ export default function WorkerLayout({ children }: { children: React.ReactNode }
         </motion.div>
 
         {/* Main Content - responsive wrapper */}
-        <main className={cn(
-          "transition-all duration-300 ease-in-out",
-          "md:ml-[16rem]",
-          "min-h-screen flex flex-col",
-          "relative z-10"
-        )}>
+        <main className="md:ml-[18rem] transition-[margin-left] duration-300">
           <motion.div 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
-            className="relative flex-1 w-full"
+            className="relative min-h-screen w-full p-4 sm:p-6 lg:p-8 z-10"
           >
-            <Container size="default" className="py-4 md:py-6 lg:py-8">
-              <div className="md:hidden flex justify-between items-center mb-4">
-                <Logo className="text-2xl" />
-                <SidebarTrigger />
-              </div>
-              <div className="space-y-6">
+            {/* Mobile Header */}
+            <div className="md:hidden flex justify-between items-center mb-4">
+              <Logo className="text-2xl" />
+              <SidebarTrigger />
+            </div>
+
+            {/* Content Wrapper */}
+            <div className="w-full">
                 {children}
-              </div>
-            </Container>
+            </div>
           </motion.div>
         </main>
       </div>

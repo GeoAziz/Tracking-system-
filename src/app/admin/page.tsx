@@ -1,9 +1,10 @@
+
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { Users, ListTodo, BarChart } from "lucide-react";
 
 export default function AdminDashboard() {
   return (
-    <div className="space-y-8 animate-fade-in-up">
+    <div className="space-y-8 animate-fade-in-up w-full">
       <header>
         <h1 className="text-4xl font-headline text-glow">Admin Dashboard</h1>
         <p className="text-muted-foreground">Welcome, Commander. Here's your mission control.</p>
