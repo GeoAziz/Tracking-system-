@@ -3,15 +3,13 @@ import Link from 'next/link';
 import Logo from '@/components/logo';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
-import SplashLoader from '@/components/splash-loader';
+import { BackgroundEffects } from '@/components/login/background-effects';
+
 
 export default function Home() {
   return (
-    <main className="relative h-screen w-full bg-black">
-      <div className="absolute inset-0 z-0">
-        <SplashLoader />
-      </div>
-
+    <main className="relative h-screen w-full overflow-hidden bg-black">
+       <BackgroundEffects />
       <div className="relative z-10 flex h-full flex-col items-center justify-center gap-6 text-center">
         <div className="animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
           <Logo isPulsing />
