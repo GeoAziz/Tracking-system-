@@ -126,7 +126,7 @@ export default function WorkerLayout({ children }: { children: React.ReactNode }
             </div>
 
             {/* Content Wrapper - responsive */}
-            <div className="max-w-5xl mx-auto w-full space-y-4">
+            <div className="w-full space-y-4">
               <motion.div
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
