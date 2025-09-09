@@ -99,19 +99,17 @@ export default function WorkerLayout({ children }: { children: React.ReactNode }
         </Sidebar>
         
         {/* Main Content - responsive wrapper */}
-        <main className="md:ml-[18rem] transition-[margin-left] duration-300">
-          <div className="relative min-h-screen p-4 sm:p-6 lg:p-8 z-10">
+        <main className="md:ml-[18rem] transition-[margin-left] duration-300 p-4 sm:p-6 lg:p-8">
             {/* Mobile Header */}
-            <div className="md:hidden flex justify-between items-center mb-4">
+            <div className="md:hidden flex justify-between items-center mb-4 z-20 relative">
               <Logo className="text-2xl" />
               <SidebarTrigger />
             </div>
 
             {/* Content Wrapper */}
-            <div>
+            <div className="relative z-10">
                 {children}
             </div>
-          </div>
         </main>
       </div>
     </SidebarProvider>
