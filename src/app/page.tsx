@@ -1,3 +1,33 @@
+import Link from 'next/link';
+import Logo from '@/components/logo';
+import { Button } from '@/components/ui/button';
+import { ArrowRight } from 'lucide-react';
+
 export default function Home() {
-  return <></>;
+  return (
+    <main className="relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden bg-gradient-to-br from-[#301934] via-background to-[#000000] p-4 text-center">
+      <div className="absolute inset-0 z-0">
+        <div className="absolute -top-20 -left-20 h-64 w-64 animate-orb-float-1 rounded-full bg-primary/20 blur-3xl" />
+        <div className="absolute -bottom-20 -right-20 h-64 w-64 animate-orb-float-2 rounded-full bg-accent/20 blur-3xl" />
+        <div className="absolute top-1/2 left-1/2 h-48 w-48 -translate-x-1/2 -translate-y-1/2 animate-orb-float-2 rounded-full bg-secondary/20 blur-2xl" />
+      </div>
+
+      <div className="relative z-10 flex flex-col items-center gap-6">
+        <div className="animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+          <Logo isPulsing />
+        </div>
+        <p className="max-w-md animate-fade-in-up text-lg text-foreground/80" style={{ animationDelay: '0.5s' }}>
+          Step Into Work. Futuristic. Fluid. Fast.
+        </p>
+        <div className="animate-fade-in-up" style={{ animationDelay: '0.8s' }}>
+          <Button asChild size="lg" className="group rounded-full bg-primary/80 text-primary-foreground hover:bg-primary hover:shadow-lg hover:shadow-primary/50 transition-all duration-300">
+            <Link href="/login">
+              Enter
+              <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
+            </Link>
+          </Button>
+        </div>
+      </div>
+    </main>
+  );
 }
