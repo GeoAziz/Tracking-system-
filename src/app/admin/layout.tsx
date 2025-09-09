@@ -60,7 +60,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           </div>
         </Sidebar>
         <SidebarInset>
-            <div className="md:hidden flex justify-between items-center mb-4 p-4">
+            <div className="md:hidden flex justify-between items-center p-4">
                 <Logo className="text-2xl" />
                 <SidebarTrigger />
             </div>
