@@ -1,3 +1,4 @@
+
 'use client';
 
 import { motion } from 'framer-motion';
@@ -9,7 +10,7 @@ import { useToast } from '@/hooks/use-toast';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { ThumbsUp, ThumbsDown, Bot, Loader2, Sparkles } from 'lucide-react';
+import { ThumbsUp, ThumbsDown, Bot, Loader2, Sparkles, Clock } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import type { AttendanceRecord } from '@/lib/types';
 
@@ -64,55 +65,55 @@ export default function AttendanceClient({ records }: { records: AttendanceRecor
   };
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-      className="space-y-6"
-    >
-      <motion.div
-        initial={{ scale: 0.95 }}
-        animate={{ scale: 1 }}
-        transition={{ delay: 0.2 }}
-      >
-        <Card className="glass-card transform transition-all duration-300 hover:shadow-lg hover:shadow-primary/10">
-          <CardHeader>
+    <div className="space-y-6">
+      <Card className="glass-card transform transition-all duration-300 hover:shadow-lg hover:shadow-primary/10">
+        <CardHeader className="flex flex-row items-start justify-between">
+          <div>
             <CardTitle className="bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
               Attendance History
             </CardTitle>
             <CardDescription>Review your recent check-ins.</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <ul className="space-y-2 max-h-[50vh] overflow-y-auto pr-2 custom-scrollbar">
-              {records.map((record, index) => (
-                <motion.li
-                  key={record.date}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                  className="flex items-center justify-between rounded-md p-3 bg-background/50 backdrop-blur-sm transform transition-all duration-300 hover:bg-background/70 hover:scale-[1.02]"
+          </div>
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <Button className="bg-gradient-to-br from-primary/20 to-primary/10 text-primary border-2 border-primary hover:bg-primary/30 hover:shadow-lg hover:shadow-primary/30 transition-all duration-300 group">
+              <Clock />
+              Sign In
+            </Button>
+          </motion.div>
+        </CardHeader>
+        <CardContent>
+          <ul className="space-y-2 max-h-[50vh] overflow-y-auto pr-2 custom-scrollbar">
+            {records.map((record, index) => (
+              <motion.li
+                key={record.date}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: index * 0.1 }}
+                className="flex items-center justify-between rounded-md p-3 bg-background/50 backdrop-blur-sm transform transition-all duration-300 hover:bg-background/70 hover:scale-[1.02]"
+              >
+                <span className="text-foreground/80 font-medium">{record.date}</span>
+                <Badge 
+                  variant="outline" 
+                  className={cn(
+                    'font-bold transition-all duration-300',
+                    getStatusBadge(record.status)
+                  )}
                 >
-                  <span className="text-foreground/80 font-medium">{record.date}</span>
-                  <Badge 
-                    variant="outline" 
-                    className={cn(
-                      'font-bold transition-all duration-300',
-                      getStatusBadge(record.status)
-                    )}
-                  >
-                    {record.status}
-                  </Badge>
-                </motion.li>
-              ))}
-            </ul>
-          </CardContent>
-        </Card>
-      </motion.div>
+                  {record.status}
+                </Badge>
+              </motion.li>
+            ))}
+          </ul>
+        </CardContent>
+      </Card>
       
       <motion.div
         initial={{ scale: 0.95 }}
         animate={{ scale: 1 }}
-        transition={{ delay: 0.3 }}
+        transition={{ delay: 0.1 }}
       >
         <Card className="glass-card transform transition-all duration-300 hover:shadow-lg hover:shadow-primary/10">
           <CardHeader>
@@ -170,6 +171,6 @@ export default function AttendanceClient({ records }: { records: AttendanceRecor
           </CardFooter>
         </Card>
       </motion.div>
-    </motion.div>
+    </div>
   );
 }
