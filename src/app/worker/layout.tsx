@@ -117,7 +117,7 @@ export default function WorkerLayout({ children }: { children: React.ReactNode }
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
-            className="relative min-h-screen w-full max-w-full p-4 sm:p-6 lg:p-8 z-10"
+            className="relative min-h-screen w-full p-4 sm:p-6 lg:p-8 z-10"
           >
             {/* Mobile Header */}
             <div className="md:hidden flex justify-between items-center mb-4">
