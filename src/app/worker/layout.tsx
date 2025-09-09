@@ -125,16 +125,9 @@ export default function WorkerLayout({ children }: { children: React.ReactNode }
               <SidebarTrigger />
             </div>
 
-            {/* Content Wrapper - responsive */}
-            <div className="w-full space-y-4">
-              <motion.div
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.2 }}
-                className="glass-card backdrop-blur-sm bg-white/5 border border-primary/20 rounded-xl shadow-lg p-4 sm:p-6 lg:p-8 overflow-x-auto"
-              >
+            {/* Content Wrapper */}
+            <div className="w-full">
                 {children}
-              </motion.div>
             </div>
           </motion.div>
         </SidebarInset>
@@ -142,5 +135,3 @@ export default function WorkerLayout({ children }: { children: React.ReactNode }
     </SidebarProvider>
   );
 }
-
-    
