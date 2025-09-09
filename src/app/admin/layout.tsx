@@ -10,7 +10,6 @@ import {
   SidebarMenu,
   SidebarMenuItem,
   SidebarMenuButton,
-  SidebarInset,
   SidebarTrigger,
 } from '@/components/ui/sidebar';
 import Logo from '@/components/logo';
@@ -60,7 +59,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
              </Button>
           </div>
         </Sidebar>
-        <SidebarInset>
+        <main className="md:ml-[16rem] transition-[margin-left] duration-300">
           <div className="w-full p-4 md:p-6">
                 <div className="md:hidden flex justify-between items-center mb-4">
                     <Logo className="text-2xl" />
@@ -68,7 +67,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                 </div>
                 {children}
           </div>
-        </SidebarInset>
+        </main>
       </div>
     </SidebarProvider>
   );

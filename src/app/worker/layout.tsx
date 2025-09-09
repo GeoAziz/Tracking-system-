@@ -10,7 +10,6 @@ import {
   SidebarMenu,
   SidebarMenuItem,
   SidebarMenuButton,
-  SidebarInset,
   SidebarTrigger,
 } from '@/components/ui/sidebar';
 import Logo from '@/components/logo';
@@ -112,7 +111,7 @@ export default function WorkerLayout({ children }: { children: React.ReactNode }
         </motion.div>
 
         {/* Main Content - responsive wrapper */}
-        <SidebarInset>
+        <main className="md:ml-[18rem] transition-[margin-left] duration-300">
           <motion.div 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -130,7 +129,7 @@ export default function WorkerLayout({ children }: { children: React.ReactNode }
                 {children}
             </div>
           </motion.div>
-        </SidebarInset>
+        </main>
       </div>
     </SidebarProvider>
   );
