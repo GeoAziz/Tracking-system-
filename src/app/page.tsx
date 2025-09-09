@@ -2,17 +2,13 @@ import Link from 'next/link';
 import Logo from '@/components/logo';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
-import dynamic from 'next/dynamic';
-
-const SplashScene = dynamic(() => import('@/components/splash-scene'), {
-  ssr: false,
-});
+import SplashLoader from '@/components/splash-loader';
 
 export default function Home() {
   return (
     <main className="relative h-screen w-full bg-black">
       <div className="absolute inset-0 z-0">
-        <SplashScene />
+        <SplashLoader />
       </div>
 
       <div className="relative z-10 flex h-full flex-col items-center justify-center gap-6 text-center">
